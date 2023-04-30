@@ -159,8 +159,6 @@ export function FaceDetection() {
         setFirstFaceDetection(true);
       }
 
-      console.log("here", result);
-
       let nextStatus: CaptureStatus;
 
       if (result === FaceDetectionStatus.Success) {
