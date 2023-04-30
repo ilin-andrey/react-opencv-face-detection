@@ -27,11 +27,11 @@ $ pnpm build
 ⋅⋅⋅`hooks/` - utility and/or app configuration hooks  
 ⋅⋅⋅`core/` - core functions
 
-## OpenCV
+### OpenCV
 
 OpenCV provides a real-time optimized Computer Vision library, tools, and hardware.
 
-### Warning
+#### Warning
 
 There are some discrepancies between OpenCV code and build tools, which are known issues. Please do the following to fix them:
 
@@ -39,7 +39,7 @@ There are some discrepancies between OpenCV code and build tools, which are know
 - replace build script `build_js.py` in repositpory by `opencv-build/platforms/js/build_js.py`
 - replace header file `intrin_wasm.hpp` in repositpory by `opencv-build/modules/core/include/opencv2/core/hal/intrin_wasm.hpp`
 
-### Build
+#### Build
 
 Run the following commands to build javascript libraries:
 
@@ -51,7 +51,7 @@ docker run --rm -v $(pwd):/src -u $(id -u):$(id -g) emscripten/emsdk:2.0.26 emcm
 
 After all that copy **opencv.js**, **opencv_js.js** & **opencv_js.worker.js** (if available) from each **build_X/bin/** folder into their **public/assets/opencv/X/** folder at the root of the project.
 
-### SIMD optimizations
+#### SIMD optimizations
 
 OpenCV.js version with SIMD optimizations doesn't work in Firefox 104 and below. Threads + SIMD version works only through HTTPS and doesn't work in Firefox 104 and below too.
 
