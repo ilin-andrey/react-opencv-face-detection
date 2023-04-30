@@ -1,6 +1,6 @@
 ## Overview
 
-This repository is an example how OpenCV `js` bundles and React can be utilized for real-time face detection from a device camera.
+This repository is an example of how OpenCV `js` bundles and React can be utilized for real-time face detection from a device camera.
 
 ### Build / Test / Lint / Typecheck
 
