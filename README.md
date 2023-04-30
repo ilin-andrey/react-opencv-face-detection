@@ -31,17 +31,17 @@ $ pnpm build
 
 OpenCV provides a real-time optimized Computer Vision library, tools, and hardware.
 
-#### Warning
+#### Step 1: prepare to build
 
-There are some discrepancies between OpenCV code and build tools, which are known issues. Please do the following to fix them:
+Clone the repo `git clone https://github.com/opencv/opencv.git`
 
-- use `emscripten/emsdk:2.0.26` Docker container which is the latest stable version which can build everything
-- replace build script `build_js.py` in repositpory by `opencv-build/platforms/js/build_js.py`
-- replace header file `intrin_wasm.hpp` in repositpory by `opencv-build/modules/core/include/opencv2/core/hal/intrin_wasm.hpp`
+Take a look at code with OpenCV usage and find every `OpenCV.js` function you need. Go to `opencv/platforms/js/opencv_js.config.py`, and keep only these functions. Otherwise use the following config file `opencv-build/platforms/js/opencv_js.config.py` and replace config inside repository. This small tweak significantly reduces size of the final bundles.
 
-#### Build
+#### Step 2: build
 
-Run the following commands to build javascript libraries:
+Take a look at [warning](#warning) section before you continue.
+
+Run the following commands to build javascript bundles:
 
 ```
 docker run --rm -v $(pwd):/src -u $(id -u):$(id -g) emscripten/emsdk:2.0.26 emcmake python3 ./platforms/js/build_js.py build_asm --disable_wasm
@@ -50,6 +50,14 @@ docker run --rm -v $(pwd):/src -u $(id -u):$(id -g) emscripten/emsdk:2.0.26 emcm
 ```
 
 After all that copy **opencv.js**, **opencv_js.js** & **opencv_js.worker.js** (if available) from each **build_X/bin/** folder into their **public/assets/opencv/X/** folder at the root of the project.
+
+#### WARNING
+
+There are some discrepancies between OpenCV code and build tools, which are known issues. Please do the following to fix them:
+
+- use `emscripten/emsdk:2.0.26` Docker container which is the latest stable version which can build everything
+- replace build script `build_js.py` in repositpory by `opencv-build/platforms/js/build_js.py`
+- replace header file `intrin_wasm.hpp` in repositpory by `opencv-build/modules/core/include/opencv2/core/hal/intrin_wasm.hpp`
 
 #### SIMD optimizations
 
